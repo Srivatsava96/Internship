@@ -7,9 +7,12 @@
 
 import csv
 import pymongo
+import os
 
 #connection = pymongo.MongoClient('localhost',27017)
-f = open('FakeNameGenerator.com_3c6159aa.csv', encoding='utf_8')
+cur_path = os.path.dirname(__file__)
+new_path = os.path.relpath('..\\Data\\FakeNameGenerator.com_3c6159aa.csv',cur_path)
+f = open(new_path, encoding='utf_8')
 reader = csv.reader(f)
 for row in reader:
     print (row)
