@@ -21,4 +21,4 @@ class Patient:
 		self.birthday = birthday
 		Patient.patCount += 1
 	def loadOneFile(self):
-		return {'number':self.number,'name':{'title':self.title,'given_name':self.given_name,'middle_initial':self.midinitial,'surname':self.surname},'gender':self.gender,'address':{'street_address':self.street_addr,'city':self.city,'state':self.state,'zip':self.zip},'birtday':self.birthday}
+		return {'number':self.number,'name':{'title':self.title,'given_name':self.given_name,'middle_initial':self.midinitial,'surname':self.surname},'gender':self.gender,'address':{'street_address':self.street_addr,'city':self.city,'state':self.state,'zip':self.zip},'birthday':self.birthday}
