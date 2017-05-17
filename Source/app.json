@@ -1,0 +1,67 @@
+{
+	// THIS IS STANARD COMMENT 
+
+	// DATA FILE FOR IMPORT
+	"data_dir" : "D:/Project/Intership/Data",
+
+	// email alerts on crash/error
+	"admin_emails" : "srivatsavagummalla@gmail.com;spnath@gmail.com;",
+
+	// LOGGER: CONFIGURATION
+	"Log_conf" : { 
+		"_comment" : " The level entry can be one of DEBUG, INFO, WARNING, ERROR, CRITICAL or NOTSET",
+		"version": 1,
+		"formatters":  {
+			"simple":  {
+				"format": "%(asctime)s %(levelname)s> %(message)s",
+				"datefmt": "%Y-%m-%d %H:%M:%S"
+			},
+		
+			"detailed":  {
+				"format": "%(asctime)s %(levelname)s (%(module)s:%(lineno)d)> %(message)s",
+				"datefmt": "%Y-%m-%d %H:%M:%S"
+			}
+		},
+
+		"handlers":  {
+			"logfile":  {
+				"class": "logging.handlers.RotatingFileHandler",
+				"filename": "C:/projects/logs/app.log",
+				"maxBytes": 2000000,
+				"backupCount": 50,
+				"delay":  true,
+				"formatter": "detailed",
+				"level": "DEBUG"
+			},
+
+			"console":  {
+				"class": "logging.StreamHandler",
+				"level": "DEBUG",
+				"formatter": "simple",
+				"stream": "ext://sys.stdout"
+			}
+		},
+
+		"loggers":  {
+			"screen":  {
+				"level": "DEBUG",
+				"handlers":  ["console"],
+				"propagate": false
+			},
+			
+			"file":  {
+				"level": "WARNING",
+				"handlers":  ["logfile"],
+				"propagate": false
+			}
+		},
+
+		"root":  {
+			"level": "DEBUG",
+			"handlers":  ["logfile", "console"]
+		}
+	},
+	
+	// END OF FILE  
+	"End_Conf": ""
+}
