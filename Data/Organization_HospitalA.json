@@ -1,0 +1,81 @@
+{
+    "NAME": "Hospital A", 
+    "NPI": "9999999912", 
+    "ADDRESS_LINE_1": "230 Wellness Street", 
+    "ADDRESS_LINE_2": "", 
+    "CITY": "Stow", 
+    "STATE": "MA", 
+    "ZIP": "01776", 
+    "PHONE": "555-989-9000", 
+    "FAX": "555-989-9100", 
+    "CONTACT": {
+        "TITLE": "Mr.", 
+        "FIRST_NAME": "CENTERA", 
+        "LAST_NAME": "ADMIN", 
+        "PHONE": "555-712-7458", 
+        "EMAIL": "CENTERA.ADMIN@tbd.informaticsincontext.com"
+    }, 
+    "PHYSICIANS": [
+        {
+            "TITLE": "Dr.", 
+            "FIRST_NAME": "CENTERA", 
+            "LAST_NAME": "PHYSICIAN1", 
+            "MIDDLE_INITIAL": "R", 
+            "SUFFIX": "M.D.", 
+            "TYPE": "Physician", 
+            "IS_ADMIN": "yes", 
+            "PHONE": "555-989-9000", 
+            "EXT": "120", 
+            "PAGER": "555-989-2500", 
+            "PAGER_ID": "45632", 
+            "MOBILE": "555-237-4578", 
+            "EMAIL": "CENTERA.PHYSICIAN1@tbd.informaticsincontext.com", 
+            "NPI": "9999999938", 
+            "USERNAME": "CENTERA.PHYSICIAN1", 
+            "TAXONOMY": [
+                "207Q00000X", 
+                " 207QS1201X"
+            ]
+        }, 
+        {
+            "TITLE": "Dr.", 
+            "FIRST_NAME": "CENTERA", 
+            "LAST_NAME": "PHYSICIAN2", 
+            "MIDDLE_INITIAL": "A", 
+            "SUFFIX": "M.D.", 
+            "TYPE": "Physician", 
+            "IS_ADMIN": "no", 
+            "PHONE": "555-989-9000", 
+            "EXT": "210", 
+            "PAGER": "555-989-2500", 
+            "PAGER_ID": "12312", 
+            "MOBILE": "555-787-7878", 
+            "EMAIL": "CENTERA.PHYSICIAN2@tbd.informaticsincontext.com", 
+            "NPI": "9999999995", 
+            "USERNAME": "CENTERA.PHYSICIAN2", 
+            "TAXONOMY": [
+                "207RG0100X"
+            ]
+        }, 
+        {
+            "TITLE": "Ms.", 
+            "FIRST_NAME": "CENTERA", 
+            "LAST_NAME": "PHYSICIAN3", 
+            "MIDDLE_INITIAL": "C", 
+            "SUFFIX": "A.R.N.P", 
+            "TYPE": "Nurse Practitioner", 
+            "IS_ADMIN": "no", 
+            "PHONE": "555-989-9000", 
+            "EXT": "220", 
+            "PAGER": "555-989-2500", 
+            "PAGER_ID": "23145", 
+            "MOBILE": "555-737-3878", 
+            "EMAIL": "CENTERA.PHYSICIAN3@tbd.informaticsincontext.com", 
+            "NPI": "9999999946", 
+            "USERNAME": "CENTERA.PHYSICIAN3", 
+            "TAXONOMY": [
+                "164W00000X"
+            ]
+        }
+    ]
+}
