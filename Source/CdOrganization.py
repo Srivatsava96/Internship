@@ -1,5 +1,5 @@
 # -----------------------------------------------------------------------------
-# Description: Data model for Organisation
+# Description: Data model for Organization
 # Author: Srivatsava
 # Date: 22-05-2017
 #------------------------------------------------------------------------------
@@ -25,13 +25,29 @@ class Physician(EmbeddedDocument):
 	ext = StringField(db_field='ext', required = True, verbose_name='phone extension')
 	pager = StringField(db_field='pager', verbose_name='contact pager number')
 	pager_id = StringField(db_field='pager_id', verbose_name='pager id number')
-	mobile = StringField(db_field='mobile', verbose_name='contact personal number'
+	mobile = StringField(db_field='mobile', verbose_name='contact personal number')
 	email = StringField(db_field='email', verbose_name='email address')
 	npi = StringField(db_field='npi', max_length=10,required = True, verbose_name='national identifier')
 	#username = 
 	taxonomy = ListField(StringField(max_length=10))
+	def Update(self,PhyDict):
+		self.title = PhyDict['TITLE']
+		self.first_name = PhyDict['FIRST_NAME']
+		self.last_name = PhyDict['LAST_NAME']
+		self.middle_initial = PhyDict['MIDDLE_INITIAL']
+		self.suffix = PhyDict['SUFFIX']
+		self.type = PhyDict['TYPE']
+		self.is_admin = PhyDict['IS_ADMIN']
+		self.phone = PhyDict['PHONE']
+		self.ext = PhyDict['EXT']
+		self.pager = PhyDict['PAGER']
+		self.pager_id = PhyDict['PAGER_ID']
+		self.mobile = PhyDict['MOBILE']
+		self.email = PhyDict['EMAIL']
+		self.npi = PhyDict['NPI']
+		self.taxonomy = PhyDict['TAXONOMY']
 
-class Organisation(Document):
+class Organisation_test(Document):
 	name = StringField(db_field='name', max_length=100, required=True, verbose_name='organisation name')
 	npi = StringField(db_field='npi', max_length=10,required = True, verbose_name='national identifier')
 	address_line1 = StringField(db_field='add', verbose_name='address')
@@ -42,3 +58,19 @@ class Organisation(Document):
 	fax = StringField(db_field='fax', verbose_name='contact fax number')
 	contact = EmbeddedDocumentField(Contact)
 	physicians = ListField(EmbeddedDocumentField(Physician))
+	
+	def UpdateUsingDict(self,OrgDict):
+		self.name = OrgDict['NAME']
+		self.npi = OrgDict['NPI']
+		self.address = OrgDict['ADDRESS_LINE_1']
+		self.city = OrgDict['CITY']
+		self.state = OrgDict['STATE']
+		self.zipCode = OrgDict['ZIP']
+		self.telephoneNumber = OrgDict['PHONE']
+		self.fax = OrgDict['FAX']
+		#self.contact = OrgDict['CONTACT']
+		for doc in OrgDict['PHYSICIANS']:
+			doc = Physician()
+			#print(doc)
+			doc.Update(doc)
+		
