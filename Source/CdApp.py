@@ -1,5 +1,5 @@
 # -----------------------------------------------------------------------------
-# Description: Clinical Data Application module with helper fuctions
+# Description: Clinical Data Application module with helper functions
 # Author: 
 # Date: 21-05-2017
 #------------------------------------------------------------------------------
