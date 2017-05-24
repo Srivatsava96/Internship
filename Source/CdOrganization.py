@@ -69,8 +69,9 @@ class Organisation_test(Document):
 		self.telephoneNumber = OrgDict['PHONE']
 		self.fax = OrgDict['FAX']
 		#self.contact = OrgDict['CONTACT']
+		"""
 		for doc in OrgDict['PHYSICIANS']:
 			doc = Physician()
 			#print(doc)
 			doc.Update(doc)
-		
+		"""
