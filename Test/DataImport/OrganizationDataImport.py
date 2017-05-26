@@ -1,6 +1,6 @@
 import os
 import json
-from Source.CdOrganization import Organisation_test
+from Source.CdOrganization import Organisation
 from Source.CdApp import CdApp
 
 
@@ -26,12 +26,12 @@ datapath = os.path.join(dataDir,dataFile)
 js = open(dataPath)
 OrgDict=json.load(js)
 
-dbOrg = Organisation_test.objects(npi=OrgDict['NPI']).first()
+dbOrg = Organisation.objects(npi=OrgDict['NPI']).first()
 if dbOrg:
 	print("Organization exist in database")
 	dbOrg.UpdateUsingDict(OrgDict = OrgDict)
 else:
 	print("Adding new organization in database")
-	dbOrg = Organisation_test()
+	dbOrg = Organisation()
 	dbOrg.UpdateUsingDict(OrgDict = OrgDict)
 dbOrg.save()
