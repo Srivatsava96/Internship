@@ -43,7 +43,7 @@
 		<td>{{q['email']}}</td>
 		<td>{{q['tel']}}</td>
 		<td>{{q['dob']}}</td>
-		<td>{{q['nid']}}</td>
+		<td><a href="http://localhost:8082/patients/edit/{{q['nid']}}">{{q['nid']}}</a></td>
 		<td>{{q['bg']}}</td>
 		<td>{{q['weight']}}</td>
 		<td>{{q['height']}}</td>

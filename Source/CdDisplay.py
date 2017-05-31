@@ -21,5 +21,14 @@ def organisation_page():
 	result = collection.find()
 	return bottle.template('Organization.tpl',rows = result)
 
+@bottle.route('/patients/edit/<nid>')
+def patient_edit_page(nid):
+	client = pymongo.MongoClient("mongodb://localhost")
+	db = client.ClinicalData
+	collection = db.patient
+	print(nid)
+	result = collection.find_one({'nid' : nid})
+	return bottle.template('EditPatient.tpl',patient = result)
+
 bottle.debug(True)
 bottle.run(host='localhost',port=8082)
