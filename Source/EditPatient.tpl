@@ -8,7 +8,7 @@
 </head>
 <body>
 <h1> Edit Patient Details </h1>
-<form action="/edit_patient.php" method="post">
+<form action="/edit_patient" method="get">
 	Gender:<input type="text" name="sex" value={{patient['sex']}}><br>
 	Title:<input type="text" name="title" value={{patient['title']}}><br>
 	First name:<input type="text" name="firstname" value={{patient['gname']}}><br>
