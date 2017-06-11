@@ -8,6 +8,7 @@
 	<h1>Clinical Data</h1>
     <p><a href="http://localhost:8082/patients">Patients collection</a></p>
 	<p><a href="http://localhost:8082/organizations">Organizations collection</a></p>
+	<p><a href="http://localhost:8082/addpatient">Add new Patient</a></p>
 </body>
 
 </html>

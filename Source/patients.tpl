@@ -5,6 +5,7 @@
 	<title>Patient Collection</title>
 </head>
 <body>
+<h1>Patient data</h1>
 <table border="1">
 <tr>
 	<th>Gender</th>
@@ -43,13 +44,14 @@
 		<td>{{q['email']}}</td>
 		<td>{{q['tel']}}</td>
 		<td>{{q['dob']}}</td>
-		<td><a href="http://localhost:8082/patients/edit/{{q['nid']}}">{{q['nid']}}</a></td>
+		<td><a href="http://localhost:8082/patients/view/{{q['nid']}}">{{q['nid']}}</a></td>
 		<td>{{q['bg']}}</td>
 		<td>{{q['weight']}}</td>
 		<td>{{q['height']}}</td>
 		<td>{{q['telcc']}}</td>
 		<td>{{q['occ']}}</td>
 		<td>{{q['com']}}</td>
+		<td><a href="http://localhost:8082/patients/edit/{{q['nid']}}">Edit</a></td>
 	</tr>
 %end
 </table>
