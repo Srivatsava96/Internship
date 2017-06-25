@@ -31,8 +31,7 @@
 	Occupation:<input type="text" name="occupation" ><br>
 	Company:<input type="text" name="company" ><br><br>
 	<input type="submit" value="Submit">
-	<input type="reset">
- 
+
 </form>
 </body>
 </html>

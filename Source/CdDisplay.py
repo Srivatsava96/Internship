@@ -73,7 +73,7 @@ def patient_add1():
 	occ = request.GET.get('occupation')
 	com = request.GET.get('company')
 	collection.insert_one({'sex':gender,'title':title,'gname':fname,'mi':mi,'surname':lname,'add':address,'city':city,'state':state,'zip':zip,'country':country,'email':email,'tel':tel,'dob':dob,'nid':nid,'bg':bg,'weight':weight,'height':height,'telcc':telcc,'occ':occ,'com':com})	
-	return bottle.template('newpatient.tpl')
+	return bottle.template('patientadd.tpl')
 
 @bottle.route('/edit_patient')
 def edit_patient():
