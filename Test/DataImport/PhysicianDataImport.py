@@ -32,6 +32,7 @@ dataPath = os.path.join(dataDir, dataFile)
 with open(dataPath, encoding='utf_8') as infile:
 	for line in infile:
 		Phydict = line.split(',')
+		Phydict = [p.strip('" ') for p in Phydict ]
 		# 1. Find if the physician exist in DB
 		dbPhy = Physician.objects(NPI=Phydict[0]).first()
 		

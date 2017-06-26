@@ -4,9 +4,8 @@
 # Date: 08-08-2017
 #------------------------------------------------------------------------------
 
-import pymongo
 import os
-from Source.CDicd import icd_codes
+from Source.CDicd import icd_codes as icdc
 from Source.CdApp import CdApp
 
 #1. Connect to Database
@@ -27,14 +26,14 @@ dataPath = os.path.join(dataDir, dataFile)
 with open(dataPath, encoding='utf_8') as f:
     for line in f:
         word = line[:7].strip()
-        dbIcd = icd_codes.objects(code=word).first()
+        dbIcd = icdc.objects(code=word).first()
         if dbIcd:
             dbIcd.updateUsingDict(line)
             dbIcd.save()
         else:
-            ndbIcd = icd_codes()
+            ndbIcd = icdc()
             ndbIcd.updateUsingDict(line)
             ndbIcd.save()
-#   dbicd = icd_codes()
+#   dbicd = icdc()
 #   dbicd.updateUsingDict()
 #  dbicd.save()
