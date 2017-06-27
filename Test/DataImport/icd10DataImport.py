@@ -1,12 +1,13 @@
 # -----------------------------------------------------------------------------
-# Description: Script to import patient data from csv file into mongoDB
+# Description: Script to import icd-10 codes from file into mongoDB
 # Author: Srivatsava
-# Date: 08-08-2017
+# Date: 26-06-2017
 #------------------------------------------------------------------------------
 
 import os
-from Source.CDicd import icd_codes as icdc
-from Source.CdApp import CdApp
+
+from Source.modelCdicd import icd_codes as icdc
+from Source.cntCdApp import CdApp
 
 #1. Connect to Database
 CdApp.connectDb()
@@ -22,7 +23,7 @@ if not dataFile:
 
 dataPath = os.path.join(dataDir, dataFile)
 
-#3. parser and save in database
+#3. parse and save in database
 with open(dataPath, encoding='utf_8') as f:
     for line in f:
         word = line[:7].strip()
@@ -34,6 +35,4 @@ with open(dataPath, encoding='utf_8') as f:
             ndbIcd = icdc()
             ndbIcd.updateUsingDict(line)
             ndbIcd.save()
-#   dbicd = icdc()
-#   dbicd.updateUsingDict()
-#  dbicd.save()
+#------------------------------------------------------------------------------
