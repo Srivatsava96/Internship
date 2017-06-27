@@ -13,6 +13,8 @@
 		<center>
 		Enter icd code: <input type = "text" name="icd"><br>
 		<br>
+		or Enter the disease description: <input type="text" name="disease"><br>
+		<br>
 		<input type="submit" value="Submit">
 		<input type="reset"> 
 		</center>

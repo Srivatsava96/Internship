@@ -38,7 +38,8 @@ class CdApp:
             self.appConf = json.loads(jsonStr)
         
         if not self.appConf:
-            raise ImportError('Clinical Data Application config is = %s' %self.appConf)
+            raise ImportError('Clinical Data Application config is = %s' 
+                              %self.appConf)
         
         return self.appConf
     
@@ -56,5 +57,6 @@ class CdApp:
         if not self.appConf:
             self.getAppConfig()
 
-        mongoengine.connect(self.appConf.get('DbName', 'ClinicalData'), host='localhost', port=27017)
-        
+        mongoengine.connect(self.appConf.get('DbName', 'ClinicalData'), 
+                            host='localhost', port=27017)
+#------------------------------------------------------------------------------

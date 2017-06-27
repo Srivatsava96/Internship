@@ -4,7 +4,6 @@
 <body bgcolor= "#E6E6FA">
 <head>
 	<title>View Patient</title>
-	<link rel="stylesheet" href="style.css">
 </head>
 <body>
 <h1>Patient details</h1>

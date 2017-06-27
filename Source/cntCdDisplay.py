@@ -1,10 +1,17 @@
+# -----------------------------------------------------------------------------
+# Description: Controller for lookup of patient and orgnization data
+# Author: Srivatsava
+# Date: 06-06-2017
+#------------------------------------------------------------------------------
+
 import bottle
 import pymongo
 from bottle import request
 
 @bottle.route('/')
 def home_page():
-	return bottle.template('hello.tpl')
+	return bottle.template('viewhello.tpl')
+#------------------------------------------------------------------------------
 
 @bottle.route('/patients')
 def patients_page():
@@ -12,7 +19,8 @@ def patients_page():
 	db = client.ClinicalData
 	collection = db.patient
 	result = collection.find()
-	return bottle.template('patients.tpl', rows = result)
+	return bottle.template('viewpatients.tpl', rows = result)
+#------------------------------------------------------------------------------
 
 @bottle.route('/organizations')
 def organisation_page():
@@ -20,7 +28,8 @@ def organisation_page():
 	db = client.ClinicalData
 	collection = db.organisation_test
 	result = collection.find()
-	return bottle.template('Organization.tpl',rows = result)
+	return bottle.template('viewOrganization.tpl',rows = result)
+#------------------------------------------------------------------------------
 
 @bottle.route('/patients/edit/<nid>')
 def patient_edit_page(nid):
@@ -29,7 +38,8 @@ def patient_edit_page(nid):
 	collection = db.patient
 	print(nid)
 	result = collection.find_one({'nid' : nid})
-	return bottle.template('EditPatient.tpl',patient = result)
+	return bottle.template('viewEditPatient.tpl',patient = result)
+#------------------------------------------------------------------------------
 
 @bottle.route('/patients/view/<nid>')
 def patient_view(nid):
@@ -38,14 +48,13 @@ def patient_view(nid):
 	collection = db.patient
 	print(nid)
 	result = collection.find_one({'nid' : nid})
-	return bottle.template('ViewPatient.tpl',patient=result)
+	return bottle.template('viewPatient.tpl',patient=result)
+#------------------------------------------------------------------------------
 
 @bottle.route('/addpatient')
 def patient_add():
-	client = pymongo.MongoClient("mongodb://localhost")
-	db = client.ClinicalData
-	collection = db.patient
-	return bottle.template('NewPatient.tpl')
+	return bottle.template('viewNewPatient.tpl')
+#------------------------------------------------------------------------------
 	
 @bottle.route('/add_patient')
 def patient_add1():
@@ -60,7 +69,7 @@ def patient_add1():
 	address = request.GET.get('address')
 	city = request.GET.get('city')
 	state = request.GET.get('state')
-	zip = request.GET.get('zip')
+	zipc = request.GET.get('zip')
 	country = request.GET.get('country')
 	email = request.GET.get('email')
 	tel = request.GET.get('tel')
@@ -72,8 +81,14 @@ def patient_add1():
 	telcc = request.GET.get('telcc')
 	occ = request.GET.get('occupation')
 	com = request.GET.get('company')
-	collection.insert_one({'sex':gender,'title':title,'gname':fname,'mi':mi,'surname':lname,'add':address,'city':city,'state':state,'zip':zip,'country':country,'email':email,'tel':tel,'dob':dob,'nid':nid,'bg':bg,'weight':weight,'height':height,'telcc':telcc,'occ':occ,'com':com})	
-	return bottle.template('patientadd.tpl')
+	collection.insert_one({'sex':gender,'title':title,'gname':fname,'mi':mi,
+						   'surname':lname,'add':address,'city':city,
+						   'state':state,'zip':zipc,'country':country,
+						   'email':email,'tel':tel,'dob':dob,'nid':nid,'bg':bg,
+						   'weight':weight,'height':height,'telcc':telcc,
+						   'occ':occ,'com':com})	
+	return bottle.template('viewpatientadd.tpl')
+#------------------------------------------------------------------------------
 
 @bottle.route('/edit_patient')
 def edit_patient():
@@ -88,7 +103,7 @@ def edit_patient():
 	address = request.GET.get('address')
 	city = request.GET.get('city')
 	state = request.GET.get('state')
-	zip = request.GET.get('zip')
+	zipc = request.GET.get('zip')
 	country = request.GET.get('country')
 	email = request.GET.get('email')
 	tel = request.GET.get('tel')
@@ -100,9 +115,14 @@ def edit_patient():
 	telcc = request.GET.get('telcc')
 	occ = request.GET.get('occupation')
 	com = request.GET.get('company')
-	result = collection.update_one({'nid':nid},{'$set':{'sex':gender,'title':title,'gname':fname,'mi':mi,'surname':lname,'add':address,'city':city,'state':state,'zip':zip,'country':country,'email':email,'tel':tel,'dob':dob,'nid':nid,'bg':bg,'weight':weight,'height':height,'telcc':telcc,'occ':occ,'com':com}})
+	result = collection.update_one({'nid':nid},{'$set':{
+			'sex':gender,'title':title,'gname':fname,'mi':mi,'surname':lname,
+			'add':address,'city':city,'state':state,'zip':zipc,'country':country,
+			'email':email,'tel':tel,'dob':dob,'nid':nid,'bg':bg,'weight':weight,
+			'height':height,'telcc':telcc,'occ':occ,'com':com}})
 	print(fname)
-	return bottle.template('Success.tpl',patient=result)
+	return bottle.template('viewSuccess.tpl',patient=result)
 
 bottle.debug(True)
 bottle.run(host='localhost',port=8082)
+#------------------------------------------------------------------------------

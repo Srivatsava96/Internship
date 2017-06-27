@@ -1,10 +1,9 @@
 # -----------------------------------------------------------------------------
 # Description: Data model for icd10 codes
 # Author: Srivatsava
-# Date: 08-05-2017
+# Date: 26-06-2017
 #------------------------------------------------------------------------------
 
-from datetime import datetime
 from mongoengine import *
 
 class icd_codes(Document):
@@ -16,3 +15,4 @@ class icd_codes(Document):
 		self.code = word
 		word = icdDict[8:].strip()
 		self.disease = word
+#------------------------------------------------------------------------------
