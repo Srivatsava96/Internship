@@ -10,7 +10,7 @@ from bottle import request
 
 @bottle.route('/')
 def home_page():
-	return bottle.template('viewhello.tpl')
+	return bottle.template('viewHello.tpl')
 #------------------------------------------------------------------------------
 
 @bottle.route('/patients')
@@ -19,7 +19,7 @@ def patients_page():
 	db = client.ClinicalData
 	collection = db.patient
 	result = collection.find()
-	return bottle.template('viewpatients.tpl', rows = result)
+	return bottle.template('viewPatients.tpl', rows = result)
 #------------------------------------------------------------------------------
 
 @bottle.route('/organizations')
@@ -87,7 +87,7 @@ def patient_add1():
 						   'email':email,'tel':tel,'dob':dob,'nid':nid,'bg':bg,
 						   'weight':weight,'height':height,'telcc':telcc,
 						   'occ':occ,'com':com})	
-	return bottle.template('viewpatientadd.tpl')
+	return bottle.template('viewPatientAdd.tpl')
 #------------------------------------------------------------------------------
 
 @bottle.route('/edit_patient')

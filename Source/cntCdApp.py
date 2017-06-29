@@ -6,12 +6,15 @@
 
 import os
 import json
+import logging
+import logging.config
 
 class CdApp:
     appName = 'Clinical Data Application'
     appDir = None
     appConf = None
     appDbName = 'ClinicalData'
+    logger = None
     
     def __init__(self):
         if not self.appDir:
@@ -49,6 +52,14 @@ class CdApp:
             self.getAppConfig()
         
         return self.appConf.get('LogConf')
+
+    @classmethod
+    def getLogger(self):
+        if not self.logger:
+            logging.config.dictConfig(self.getLogConfig())
+            self.logger = logging.getLogger('file')
+            
+        return self.logger
 
     @classmethod
     def connectDb(self):

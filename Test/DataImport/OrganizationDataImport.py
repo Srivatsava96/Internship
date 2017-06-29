@@ -6,6 +6,12 @@
 
 import os
 import json
+import sys
+
+proj_path = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
+proj_path = os.path.dirname(proj_path)
+if proj_path not in sys.path:
+	sys.path.append(proj_path)
 
 from Source.modelCdOrganization import Organisation
 from Source.cntCdApp import CdApp
@@ -26,6 +32,7 @@ if not dataFile:
 dataPath = os.path.join(dataDir, dataFile)
 js = open(dataPath)
 OrgDict=json.load(js)
+logger = CdApp.getLogger()
 
 dbOrg = Organisation.objects(npi=OrgDict['NPI']).first()
 if dbOrg:

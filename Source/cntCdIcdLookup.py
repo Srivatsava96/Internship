@@ -10,7 +10,7 @@ from bottle import request
 
 @bottle.route('/')
 def home_page():
-    return bottle.template('viewicdlookup.tpl')
+    return bottle.template('viewIcdLookup.tpl')
 #------------------------------------------------------------------------------
 
 @bottle.route('/icd_lookup', method = "POST")
@@ -23,7 +23,7 @@ def icd_search():
     if (icd!=''):
         result = collection.find_one({'code':icd})
         if(result!=None):
-            return bottle.template('viewicd.tpl',icd=result)
+            return bottle.template('viewIcd.tpl',icd=result)
         else:
             return "No code found in database"
     
@@ -32,7 +32,7 @@ def icd_search():
         disease = str1+disease+str1
         result = collection.find({'disease':{'$regex':disease}})
         if(result!=None):
-            return bottle.template('viewdisease10.tpl',icd=result)
+            return bottle.template('viewDisease10.tpl',icd=result)
         else:
             return "No match found in database"
         

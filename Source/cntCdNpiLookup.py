@@ -10,7 +10,7 @@ from bottle import request
 
 @bottle.route('/')
 def home_page():
-    return bottle.template('viewnpilookup.tpl')
+    return bottle.template('viewNpiLookup.tpl')
 #------------------------------------------------------------------------------
 
 @bottle.route('/npi_lookup', method='POST')
@@ -26,7 +26,7 @@ def search():
         if (result == None):
             return "No record found with given NPI"
         else:
-            return bottle.template('viewnpi.tpl',phy = result)
+            return bottle.template('viewNpi.tpl',phy = result)
         
     else:
         result = collection.find({'$and':[{'Provider_Last_Name':lastname},

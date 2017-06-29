@@ -10,7 +10,7 @@ from bottle import request
 
 @bottle.route('/')
 def home_page():
-    return bottle.template('viewicdmapping.tpl')
+    return bottle.template('viewIcdMapping.tpl')
 #------------------------------------------------------------------------------
 
 @bottle.route('/icd_map', method="POST")
@@ -28,7 +28,7 @@ def icd_map():
             collection = db.icd_codes
             result2 = collection.find_one({'disease':{'$regex':disease}})
             if(result2!=None):
-                return bottle.template('viewicd10map.tpl',icd=result2)
+                return bottle.template('viewIcd10Map.tpl',icd=result2)
             else:
                 return "No matching ICD code found by the disease description."
         else:
@@ -42,7 +42,7 @@ def icd_map():
             collection = db.icd_codes9
             result2 = collection.find_one({'disease':{'$regex':disease}})
             if(result2 !=None):
-                return bottle.template('viewicd9map.tpl',icd=result2)
+                return bottle.template('viewIcd9Map.tpl',icd=result2)
             else:
                 return "No matching ICD code found by the disease description."
         else:

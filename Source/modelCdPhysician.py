@@ -96,7 +96,7 @@ class Physician(Document):
 		self.NPI = Phydict[0]     
 		self.Entity_Type_Code = Phydict[1]
 		self.Replacement_NPI = Phydict[2]
-		self.Employer_Identification_Number = Phydict[3]
+		self.Employer_Identification_Number = Phydict[3] or None 
 		self.Provider_Organization_Name = Phydict[4]
 		self.Provider_Last_Name = Phydict[5]
 		self.Provider_First_Name = Phydict[6]
