@@ -13,13 +13,13 @@
 	<center>
 	<table border = 1>
 	<tr>
-	<td>Name:</td> <td>{{phy['Provider_Name_Prefix_Text']}} {{phy['Provider_First_Name']}} {{phy['Provider_Middle_Name']}} {{phy['Provider_Last_Name']}} {{phy['Provider_Credential_Text']}}</td><br>
+	<td>Name:</td> <td>{{phy['n8']}} {{phy['n6']}} {{phy['n7']}} {{phy['n5']}} {{phy['n10']}}</td><br>
 	</tr>
 	<tr>
-	<td>ZIP:</td><td>{{phy['Provider_Business_Mailing_Address_Postal_Code']}}</td><br>
+	<td>ZIP:</td><td>{{phy['n24']}}</td><br>
 	</tr>
 	<tr>
-	<td>State Code:</td><td>{{phy['Provider_Business_Mailing_Address_State_Name']}}</td><br>
+	<td>State Code:</td><td>{{phy['n23']}}</td><br>
 	</tr>
 	<tr>
 	<td>Speciality:</td><td>{{phy['Healthcare_Provider']}}</td><br>

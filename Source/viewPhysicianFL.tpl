@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 
 <html>
-<body bgcolor= "#E6E6FA">
+<body bgcolor= "#6BEC1C">
 <head>
 	<title>Search Result</title>
 </head>
 
 <body>
 	<h1 align = "center"><font color = "red">Physician search:</font></h1>
-	<table border="1">
+	<table border="1" align = "center" bgcolor= "#E6E6FA">
 	<tr>
 		<th>NPI</th>
 		<th>First Name</th>
@@ -20,11 +20,11 @@
 	%for q in rows:
 	<tr>
 		<td>{{q['NPI']}}</td>
-		<td>{{q['Provider_First_Name']}}</td>
-		<td>{{q['Provider_Middle_Name']}}</td>
-		<td>{{q['Provider_Last_Name']}}</td>
-		<td>{{q['Provider_Business_Mailing_Address_Postal_Code']}}</td>
-		<td>{{q['Provider_Business_Mailing_Address_Telephone_Number']}}</td>
+		<td>{{q.get('n6')}}</td>
+		<td>{{q.get('n7')}}</td>
+		<td>{{q.get('n5')}}</td>
+		<td>{{q.get('n24')}}</td>
+		<td>{{q.get('n26')}}</td>
 	</tr>
 	%end
 </table>

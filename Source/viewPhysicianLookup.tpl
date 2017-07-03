@@ -64,7 +64,7 @@ div.tab button.active {
 </style>
 </head>
 <body>
-<h1 align = "center"><font color = "red">Physician Lookup for Patients and Organisations</font></h1>
+<h1 align = "center"><font color = "red"><b>Physician Lookup for Patients and Organisations</b></font></h1>
 <p>Select whether a patient or a hospital looking for the physician:</p>
 
 <div class="tab">
@@ -79,7 +79,7 @@ div.tab button.active {
   <p align = "center">Enter any of the following physician details:</p>
   <form action = "/physician_lookup_pat" method = "POST">
 		<center>
-		Speciality: <input type = "text" name="speciality"><br>
+		Speciality: <input type = "text" name="speciality", id="ajax", list="json-datalist", placeholder="e.g. surgeon"><br>
 		<br>
 		First Name: <input type = "text" name ="first_name"><br>
 		<br>
@@ -132,6 +132,42 @@ function openCity(evt, cityName) {
     document.getElementById(cityName).style.display = "block";
     evt.currentTarget.className += " active";
 }
+</script>
+<script>
+var dataList = document.getElementById('json-datalist');
+var input = document.getElementById('ajax');
+var request = new XMLHttpRequest();
+request.onreadystatechange = function(response) {
+  if (request.readyState === 4) {
+    if (request.status === 200) {
+      // Parse the JSON
+      var jsonOptions = JSON.parse(request.responseText);
+  
+      // Loop over the JSON array.
+      jsonOptions.forEach(function(item) {
+        // Create a new <option> element.
+        var option = document.createElement('option');
+        // Set the value using the item in the JSON array.
+        option.value = item;
+        // Add the <option> element to the <datalist>.
+        dataList.appendChild(option);
+      });
+      
+      // Update the placeholder text.
+      input.placeholder = "e.g. surgeon";
+    } else {
+      // An error occured :(
+      input.placeholder = "Couldn't load datalist options :(";
+    }
+  }
+};
+
+// Update the placeholder text.
+input.placeholder = "Loading options...";
+
+// Set up and make the request.
+request.open('GET', 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/4621/html-elements.json', true);
+request.send();
 </script>
      
 </body>

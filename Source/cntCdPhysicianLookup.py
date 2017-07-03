@@ -8,7 +8,7 @@ import bottle
 import pymongo
 from bottle import request
 
-from Source.cntCdApp import CdApp
+from cntCdApp import CdApp
 
 logger = CdApp.getLogger()
 
@@ -32,19 +32,41 @@ def search():
             if (result == None):
                 return "No record found with given NPI"
             else:
-                return bottle.template('viewNpi.tpl',phy = result)
+                if (result['n1']=='1'):
+                    return bottle.template('viewNpi.tpl',phy = result)
+                else:
+                    return bottle.template()
             
         else:
-            str1 = '.*'
-            lastname = str1 + lastname + str1
-            firstname = str1 + firstname + str1
-            result = collection.find({'$and':[{'Provider_Last_Name':{'$regex':lastname}},
-                                              {'Provider_First_Name':{'$regex':firstname}}]})
+            if firstname == None:
+                firstname=""
+            
+            if firstname and lastname:
+                str1 = '.*'
+                firstname = str1 + firstname + str1
+                lastname = str1 + lastname + str1
+                result = collection.find({'$and':[{'n5':{'$regex':lastname}},
+                                                  {'n6':{'$regex':firstname}}]})
+            elif lastname:
+                result = collection.find({'n5':lastname})
+                
             return bottle.template('viewPhysicianFL.tpl',rows = result)
     except Exception as e:
         logger.error("ERROR: {}".format(e))
 #------------------------------------------------------------------------------
 
+@bottle.route('/ajax')
+def get_speciality():
+    try:
+        client = pymongo.MongoClient("mongodb://localhost")
+        db = client.ClinicalData
+        collection = db.physician
+        result = collection.find_one({},{'_id':0,'NPI':1})
+        return result
+    except Exception as e:
+        logger.error("ERROR: {}".format(e))
+#------------------------------------------------------------------------------
+    
 @bottle.route('/physician_lookup_pat', method = "POST")
 def pat_search():
     try:
@@ -62,9 +84,9 @@ def pat_search():
         zipcode = str1 + zipcode + str1
         speciality = str1 + speciality + str1
         state = str1 + state + str1
-        result = collection.find({'$and':[{'Provider_Last_Name':{'$regex':lastname}},
-                                          {'Provider_First_Name':{'$regex':firstname}},
-                                          {'Provider_Business_Mailing_Address_Postal_Code':{}}]})
+        result = collection.find({'$and':[{'n5':{'$regex':lastname}},
+                                          {'n6':{'$regex':firstname}},
+                                          ]})
         return bottle.template('viewPhysicianFL.tpl',rows = result)
     except Exception as e:
         logger.error("ERROR: {}".format(e))
