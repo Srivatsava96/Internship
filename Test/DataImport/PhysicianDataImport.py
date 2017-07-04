@@ -7,6 +7,7 @@
 
 import os
 import sys
+import csv
 
 proj_path = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
 proj_path = os.path.dirname(proj_path)
@@ -35,15 +36,16 @@ logger = CdApp.getLogger()
 count = 0
 clean_import = True
 with open(dataPath, encoding='utf_8') as infile:
-	for line in infile:
-		count += 1
-		Phydict = line.split(',')
-		Phydict = [p.strip('" ') for p in Phydict ]
+	reader = csv.reader(infile)
+	for count,Phydict in enumerate(reader):
+		dbPhy = None
 		
 		if not count%2000:
 			print('{}'.format(count))
-		# 1. Find if the physician exist in DB
-		dbPhy = None
+		
+		if len(Phydict)!=329:
+			print('{}'.format(len(Phydict)))
+				
 		if not clean_import:
 			dbPhy = Physician.objects(NPI=Phydict[0]).first()
 			

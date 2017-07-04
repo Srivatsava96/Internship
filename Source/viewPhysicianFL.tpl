@@ -20,11 +20,11 @@
 	%for q in rows:
 	<tr>
 		<td>{{q['NPI']}}</td>
-		<td>{{q.get('n6')}}</td>
-		<td>{{q.get('n7')}}</td>
-		<td>{{q.get('n5')}}</td>
-		<td>{{q.get('n24')}}</td>
-		<td>{{q.get('n26')}}</td>
+		<td>{{q.get('n6') or ""}}</td>
+		<td>{{q.get('n7') or ""}}</td>
+		<td>{{q.get('n5') or ""}}</td>
+		<td>{{q.get('n24') or ""}}</td>
+		<td>{{q.get('n26') or ""}}</td>
 	</tr>
 	%end
 </table>
