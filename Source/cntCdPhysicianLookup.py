@@ -35,7 +35,7 @@ def search():
                 if (result['n1']=='1'):
                     return bottle.template('viewNpi.tpl',phy = result)
                 else:
-                    return bottle.template()
+                    return bottle.template('viewOrg.tpl',phy = result)
             
         else:
             if firstname == None:

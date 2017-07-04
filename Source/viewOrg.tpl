@@ -8,12 +8,12 @@
 
 <body>
 	<h1 align ="center"><font color = "navy">NPI Number Lookup</font></h1>
-	<h2 align ="center"><font color = "red">This is a physician</font></h2>
+	<h2 align ="center"><font color = "red">This is an organization.</font></h2>
 	<br>
 	<center>
 	<table border = 1>
 	<tr>
-	<td>Name:</td> <td>{{phy['n8']}} {{phy['n6']}} {{phy['n7']}} {{phy['n5']}} {{phy['n10']}}</td><br>
+	<td>Name:</td> <td>{{phy['n4']}}</td><br>
 	</tr>
 	<tr>
 	<td>ZIP:</td><td>{{phy['n24']}}</td><br>
