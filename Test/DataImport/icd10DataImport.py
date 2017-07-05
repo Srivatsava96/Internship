@@ -31,6 +31,7 @@ def get_dataPath():
     dataPath = os.path.join(dataDir, dataFile)
     return dataPath
 #------------------------------------------------------------------------------
+
 def import_data(dataPath, clean_import, delete_col):
     if (delete_col == True):
         icdc.drop_collection()

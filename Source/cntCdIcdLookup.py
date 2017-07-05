@@ -8,13 +8,16 @@ import bottle
 import pymongo
 from bottle import request
 
-from Source.cntCdApp import CdApp
+from cntCdApp import CdApp
 
 logger = CdApp.getLogger()
 
 @bottle.route('/')
 def home_page():
-    return bottle.template('viewIcdLookup.tpl')
+    try:
+        return bottle.template('viewIcdLookup.tpl')
+    except Exception as e:
+        logger.error("ERROR: {}".format(e))
 #------------------------------------------------------------------------------
 
 @bottle.route('/icd_lookup', method = "POST")

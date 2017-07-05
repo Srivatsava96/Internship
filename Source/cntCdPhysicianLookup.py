@@ -14,7 +14,10 @@ logger = CdApp.getLogger()
 
 @bottle.route('/')
 def home_page():
-    return bottle.template('viewPhysicianLookup.tpl')
+    try:
+        return bottle.template('viewPhysicianLookup.tpl')
+    except Exception as e:
+        logger.error("ERROR: {}".format(e))
 #------------------------------------------------------------------------------
 
 @bottle.route('/physician_lookup_org', method='POST')
@@ -90,13 +93,6 @@ def pat_search():
         return bottle.template('viewPhysicianFL.tpl',rows = result)
     except Exception as e:
         logger.error("ERROR: {}".format(e))
-
-@bottle.route('/list')
-def list_me():
-    client = pymongo.MongoClient("mongodb://localhost")
-    db = client.ClinicalData
-    collection = db.states
-    return collection.find()
 
 bottle.debug(True)
 bottle.run(host='localhost',port=8082)
