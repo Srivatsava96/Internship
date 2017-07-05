@@ -71,11 +71,11 @@ def import_data(data_path, clean_import, delete_col):
 			
 def main(argv):
 	try:
-		opts, args = getopt(argv,"hi:cr",["help="])
+		opts, args = getopt(argv,"hi:crn",["help="])
 		
 	except getopt.GetoptError:
 		print("PhysicianDataImport.py -i <inputfile> -c <cleanimport>")
-		print("-h <help> -r <dropdatabase>")
+		print("-h <help> -r <dropdatabase> -n <normalimport>")
 		sys.exit(2)
 	
 	data_path = None
@@ -93,6 +93,8 @@ def main(argv):
 			clean_import = True
 		elif opt in ("-r", "--dropdatabase"):
 			delete_col = True
+		elif opt in ("-n"):
+			print("Starting Import")
 
 
 	import_data(data_path, clean_import, delete_col)
@@ -101,4 +103,3 @@ def main(argv):
 if __name__ == "__main__":
 	main(sys.argv[1:])					
 #------------------------------------------------------------------------------
-
