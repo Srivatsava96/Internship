@@ -33,7 +33,7 @@ def get_dataPath():
 
 def import_data(dataPath, clean_import, delete_col):
     if (delete_col == True):
-        icdc.drop_collection()
+        icd_codes9.drop_collection()
         return
     
     with open(dataPath) as f:
