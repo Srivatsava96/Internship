@@ -79,7 +79,11 @@ div.tab button.active {
   <p align = "center">Enter any of the following physician details:</p>
   <form action = "/physician_lookup_pat" method = "POST">
 		<center>
-		Speciality: <input type = "text" name="speciality", id="ajax", list="json-datalist", placeholder="e.g. surgeon"><br>
+		Speciality:<br>
+		 <input type = "text" name="speciality", id="ajax", list="json-datalist", placeholder="Grouping">
+		 <input type = "text" name="speciality2", id="ajax2", list="json-datalist2", placeholder="Classification"><br>
+		<datalist id="json-datalist"></datalist>
+		<datalist id="json-datalist2"></datalist>
 		<br>
 		First Name: <input type = "text" name ="first_name"><br>
 		<br>
@@ -134,10 +138,15 @@ function openCity(evt, cityName) {
 }
 </script>
 <script>
+var lookup = {};
+var lookup2 = {};
+var resultg = [];
 var dataList = document.getElementById('json-datalist');
+var dataList2 = document.getElementById('json-datalist2');
 var input = document.getElementById('ajax');
 var request = new XMLHttpRequest();
-request.onreadystatechange = function(response) {
+request.onreadystatechange = function() {
+	console.log("Hello");
   if (request.readyState === 4) {
     if (request.status === 200) {
       // Parse the JSON
@@ -146,15 +155,27 @@ request.onreadystatechange = function(response) {
       // Loop over the JSON array.
       jsonOptions.forEach(function(item) {
         // Create a new <option> element.
-        var option = document.createElement('option');
+  		var grouping = item.grouping;
+		var classification = item.classification
+  		if (!(grouping in lookup)) {
+    		lookup[grouping] = 1;
+    		var option = document.createElement('option');
+    		option.value = grouping;
+    		dataList.appendChild(option);
+		  }
+		if (!(classification in lookup2)) {
+			lookup2[classification] =1;
+			var option2 = document.createElement('option');
+    		option2.value = classification;
+    		dataList2.appendChild(option2);
+    	}
         // Set the value using the item in the JSON array.
-        option.value = item;
+        
         // Add the <option> element to the <datalist>.
-        dataList.appendChild(option);
       });
       
       // Update the placeholder text.
-      input.placeholder = "e.g. surgeon";
+      input.placeholder = "Grouping";
     } else {
       // An error occured :(
       input.placeholder = "Couldn't load datalist options :(";
@@ -166,7 +187,7 @@ request.onreadystatechange = function(response) {
 input.placeholder = "Loading options...";
 
 // Set up and make the request.
-request.open('GET', 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/4621/html-elements.json', true);
+request.open('POST', '/ajax', true);
 request.send();
 </script>
      

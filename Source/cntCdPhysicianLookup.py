@@ -7,6 +7,7 @@
 import bottle
 import pymongo
 from bottle import request
+import json
 
 from cntCdApp import CdApp
 
@@ -58,14 +59,15 @@ def search():
         logger.error("ERROR: {}".format(e))
 #------------------------------------------------------------------------------
 
-@bottle.route('/ajax')
+@bottle.route('/ajax',method = "POST")
 def get_speciality():
     try:
         client = pymongo.MongoClient("mongodb://localhost")
         db = client.ClinicalData
-        collection = db.physician
-        result = collection.find_one({},{'_id':0,'NPI':1})
-        return result
+        collection = db.taxonomy
+        result = collection.find({},{'_id':0})
+        res = list(result)
+        return json.dumps(res)
     except Exception as e:
         logger.error("ERROR: {}".format(e))
 #------------------------------------------------------------------------------
