@@ -7,7 +7,6 @@ import os
 import sys
 import csv
 from getopt import getopt
-import code
 
 proj_path = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
 proj_path = os.path.dirname(proj_path)
