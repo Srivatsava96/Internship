@@ -44,6 +44,9 @@ def search():
         else:
             if firstname == None:
                 firstname=""
+                
+            if lastname == None:
+                lastname=""
             
             if firstname and lastname:
                 str1 = '.*'
@@ -53,8 +56,17 @@ def search():
                                                   {'n6':{'$regex':firstname}}]})
             elif lastname:
                 result = collection.find({'n5':lastname})
-                
-            return bottle.template('viewPhysicianFL.tpl',rows = result)
+            
+            elif firstname:
+                result = collection.find({'n6':firstname})
+            
+            else:
+                return "No detail entered"
+            
+            if (result != None):
+                return bottle.template('viewPhysicianFL.tpl',rows = result)
+            else:
+                return "<p>No record found with given first and last names</p>"
     except Exception as e:
         logger.error("ERROR: {}".format(e))
 #------------------------------------------------------------------------------
